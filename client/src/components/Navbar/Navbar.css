@@ -1,0 +1,26 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+    padding: 20px 50px;
+
+}
+.Navbar > div {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.Navbar > a, .Navbar > div > a {
+    text-decoration: none;
+    color: black;
+}
+
+.Navbar > a:hover, .Navbar > div > a:hover {
+    font-weight: bold;
+}
+
+.Navbar > a:focus, .Navbar > div > a:focus {
+    color: blue;
+}
+
