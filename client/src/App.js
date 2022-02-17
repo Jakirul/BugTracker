@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Login, Register, Navbar } from './components'
-import { Home, ErrorPage, CreateListing } from './pages'
+import { Navbar } from './components'
+import { Home, ErrorPage, CreateListing, Login, Register } from './pages'
 import './styling/App.css'
 
 const App = () => {
