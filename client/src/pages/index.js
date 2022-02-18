@@ -1,5 +1,6 @@
 export { default as Home } from './Home'
 export { default as ErrorPage } from './ErrorPage'
-export { default as CreateListing } from './CreateListing'
+export { default as NewBug } from './NewBug'
 export { default as Login } from './Login'
 export { default as Register } from './Register'
+export { default as YourBugs } from './YourBugs'

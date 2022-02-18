@@ -10,6 +10,8 @@ router.use(cors())
 
 
 router.get('/', bugTrackerController.allBugs)
+router.post('/new', bugTrackerController.newBug)
+router.get('/get', bugTrackerController.bugsByUser)
 
 router.post('/login', authController.login)
 router.post('/register', authController.register)

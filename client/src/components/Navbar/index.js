@@ -13,24 +13,33 @@ const Navbar = () => {
     return (
 
         <div className="Navbar">
-            <div>
-                <Link to="/">Home page</Link>
-                <Link to="/create">Create Listing</Link>
-            </div>
+
             {
                 !localStorage.getItem("username")
-                    
+
                     ?
-                    
                     <div>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
+                        <div>
+                            <Link to="/">Home page</Link>
+                        </div>
+
+                        <div>
+                            <Link to="/login">Login</Link>
+                            <Link to="/register">Register</Link>
+                        </div>
                     </div>
                     :
-                    
-                    
+
                     <div>
-                        <Link to="/" onClick={logout}>Logout</Link>
+                        <div>
+                            <Link to="/">Home page</Link>
+                            <Link to="/new">New Bug</Link>
+                            <Link to="/profile">Your bugs</Link>
+                        </div>
+
+                        <div>
+                            <Link to="/" onClick={logout}>Logout</Link>
+                        </div>
                     </div>
             }
 

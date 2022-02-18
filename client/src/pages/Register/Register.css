@@ -1,0 +1,37 @@
+.Register > form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid  rgb(224, 217, 217);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.Register > form > input[type='text'] {
+    margin: 5px;
+    padding: 5px 20px;
+    border-radius: 0.5em;
+    border: 1px solid rgb(224, 217, 217);
+}
+
+.Register > form > input[type='submit'] {
+    width: 40%;
+    margin: 10px auto;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #45a33e;
+    color: white;
+    font-weight: bold;
+}
+
+.Register > form > .success {
+    color: green;
+    font-weight: bold;
+}
+
+.Register > form > .error {
+    color: red;
+    font-weight: bold;
+}

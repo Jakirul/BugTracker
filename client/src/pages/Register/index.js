@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './Register.css'
 
 const Login = () => {
     const [username, setUsername] = useState("")
@@ -31,12 +32,12 @@ const Login = () => {
         } else {
             setError()
             setSuccess("Successfully registered!")
-            navigate("/login")
+            setTimeout(() => navigate("/login"), 500)
         }
     }
 
     return (
-        <div>
+        <div className="Register">
             <h1>Register</h1>
             <form onSubmit={registerUser}>
                 <label htmlFor="username">Username</label>
@@ -47,9 +48,10 @@ const Login = () => {
 
                 <input type="submit" />
 
+                {success ? <p className="success">{success}</p> : <p className="error">{error}</p>}
+
             </form>
-            <p>{error}</p>
-            <p>{success}</p>
+            
         </div>
     )
 }

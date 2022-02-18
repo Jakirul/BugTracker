@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import './Home.css'
+import './YourBugs.css'
 
-const Home = () => {
+const YourBugs = () => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    const bugsData = async () => {
-      const data = await fetch("http://localhost:3001/");
-      const dataJson = await data.json();
-      setData(dataJson)
+    const getBugs = async () => {
+      const data = await fetch(`http://localhost:3001/get?user=${localStorage.getItem("username")}`)
+      const jsons = await data.json();
+      setData(jsons)
     }
 
-    bugsData()
+    getBugs()
   }, [])
 
   const dataMap = data.map((data, key) => {
@@ -27,12 +27,12 @@ const Home = () => {
   })
 
   return (
-    <div className="Home">
-      {dataMap}
-      
-      
+    <div className="YourBugs">
+        <h1>Your bugs</h1>
+        <hr />
+        {data.length ? dataMap : <p>You haven't reported any bugs!</p>}
     </div>
-  );
+  )
 }
 
-export default Home;
+export default YourBugs

@@ -9,20 +9,20 @@ class User {
   }
 
   static get all() {
-    return new Promise(async (res, rej) => {
+    return new Promise(async (resolve, reject) => {
       try {
         let db = await init();
         let result = await db.collection("users").find({}).toArray();
         let users = result.map((r) => new User(r));
-        res(users);
+        resolve(users);
       } catch (err) {
-        rej(`Error retrieving users: ${err}`);
+        reject(`Error retrieving users: ${err}`);
       }
     });
   }
 
   static create({ username, password }) {
-    return new Promise(async (res, rej) => {
+    return new Promise(async (resolve, reject) => {
       try {
         const userExists = await User.findByUsername(username);
 
@@ -32,27 +32,27 @@ class User {
             .collection("users")
             .insertOne({ username: username, password_digest: password });
           // let newUser = new User(result);
-          res(result);
+          resolve(result);
         } else {
-          rej("Username taken");
+          reject("Username taken");
         }
       } catch (err) {
-        rej(`Error creating user: ${err}`);
+        reject(`Error creating user: ${err}`);
       }
     });
   }
 
   static findByUsername(username) {
-    return new Promise(async (res, rej) => {
+    return new Promise(async (resolve, reject) => {
       try {
         const db = await init();
         const result = await db
           .collection("users")
           .find({ username: username })
           .toArray();
-        res(result);
+        resolve(result);
       } catch (err) {
-        rej(`Error retrieving user: ${err}`);
+        reject(`Error retrieving user: ${err}`);
       }
     });
   }
