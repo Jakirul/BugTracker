@@ -44,10 +44,11 @@ const Login = () => {
                 <input type="text" name="username" onChange={e => setUsername(e.target.value)} />
 
                 <label htmlFor="password">Password</label>
-                <input type="text" name="password" onChange={e => setPassword(e.target.value)} />
+                <input type="password" name="password" onChange={e => setPassword(e.target.value)} />
 
                 <input type="submit" />
 
+                <p>Already have an account? <span onClick={() => navigate("/login")}>Login here</span></p>
                 {success ? <p className="success">{success}</p> : <p className="error">{error}</p>}
 
             </form>
