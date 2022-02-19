@@ -6,7 +6,7 @@ db.bugs.insertMany([
     { 
         title: 'Code isnt working', 
         description: "As title says, this code doesnt work!", 
-        status: "Pending", 
+        status: "Urgent", 
         user: "Jakirul" 
     }
 ]);

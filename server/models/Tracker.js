@@ -1,4 +1,5 @@
 const {init} = require("../db/mongoInit")
+const { ObjectId } = require("mongodb");
 
 class Tracker {
     constructor(data) {
@@ -47,6 +48,19 @@ class Tracker {
 
             } catch (e) {
                 reject(`${e} - Could not find a bug by this username`)
+            }
+        })
+    }
+
+    static getBugById(id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const db = await init();
+                const getById = await db.collection("bugs").findOne({_id: ObjectId(id)})
+                resolve(getById)
+
+            } catch (e) {
+                reject(`${e} - Could not get a bug with this id`)
             }
         })
     }

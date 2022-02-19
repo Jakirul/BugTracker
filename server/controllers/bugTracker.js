@@ -32,4 +32,15 @@ async function bugsByUser(req, res) {
     }
 }
 
-module.exports = {allBugs, newBug, bugsByUser}
+async function getBugById(req, res) {
+    try {
+        const {id} = req.params
+        const bugsById = await Tracker.getBugById(id)
+        res.status(200).json(bugsById)
+
+    } catch (e) {
+        res.status(404).json({'Error': `${e}`})
+    }
+}
+
+module.exports = {allBugs, newBug, bugsByUser, getBugById}
