@@ -54,7 +54,7 @@ const NewBug = () => {
                 <input name="title" type="text" onChange={e => setTitle(e.target.value)} />
 
                 <label htmlFor="description">Description</label>
-                <input name="description" type="text" onChange={e => setDescription(e.target.value)} />
+                <textarea name="description" type="text" onChange={e => setDescription(e.target.value)} />
 
                 <label htmlFor="status">Status</label>
                 <select onChange={e => setStatus(e.target.value)}>
@@ -64,7 +64,17 @@ const NewBug = () => {
 
                 <input type="submit" />
 
-                {success ? <p className="success">{success}</p> : <p className="error">{error}</p>}
+                {success || error 
+                    ?
+                        success 
+                            ? 
+                                <p className="success">{success}</p> 
+                            : 
+                                <p className="error">{error}</p>
+                    :
+                    null
+                }
+                
 
             </form>
         </div>

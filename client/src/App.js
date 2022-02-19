@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from './components'
-import { Home, ErrorPage, NewBug, Login, Register, YourBugs } from './pages'
+import { Home, ErrorPage, NewBug, Login, Register, YourBugs, ShowPage } from './pages'
 import './styling/App.css'
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
     }
 
   }, [localStorage.getItem("username")])
-  
+
   return (
     <div className="App">
       <Navbar />
@@ -25,6 +25,7 @@ const App = () => {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/new" element={<NewBug />} />
         <Route exact path="/profile" element={<YourBugs />} />
+        <Route exact path="/view/:id" element={<ShowPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

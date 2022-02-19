@@ -1,0 +1,23 @@
+.ShowPage > .information {
+    border: 1px solid black;
+    width: 25%;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.ShowPage > .information > textarea {
+    resize: none;
+    width: 50%;
+    height: 100px;
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.ShowPage > .information > p > span {
+    font-weight: bold;
+}

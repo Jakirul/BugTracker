@@ -15,6 +15,16 @@
     border: 1px solid rgb(224, 217, 217);
 }
 
+.NewBug > form > textarea {
+    margin-bottom: 15px;
+    padding: 5px 20px;
+    border-radius: 0.5em;
+    border: 1px solid rgb(224, 217, 217);
+    height: 100px;
+    resize: none;
+
+} 
+
 .NewBug > form > select {
     width: 50%;
     margin: 0 auto;
@@ -24,9 +34,9 @@
 }
 
 .NewBug > form > input[type='submit'] {
-    width: 40%;
+    width: 30%;
     margin: 10px auto;
-    padding: 15px 20px;
+    padding: 10px;
     border-radius: 8px;
     border: none;
     background-color: #45a33e;
