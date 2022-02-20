@@ -10,9 +10,11 @@ router.use(cors())
 
 
 router.get('/', bugTrackerController.allBugs)
-router.post('/new', bugTrackerController.newBug)
 router.get('/get', bugTrackerController.bugsByUser)
 router.get('/view/:id', bugTrackerController.getBugById)
+router.post('/new', bugTrackerController.newBug)
+router.put('/comment/:id', bugTrackerController.appendComment)
+router.put('/bug/:id', verifyToken, bugTrackerController.markBugResolved)
 
 router.post('/login', authController.login)
 router.post('/register', authController.register)
