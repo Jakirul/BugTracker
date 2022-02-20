@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from './components'
+import jwt_decode from 'jwt-decode'
 import { Home, ErrorPage, NewBug, Login, Register, YourBugs, ShowPage } from './pages'
 import './styling/App.css'
 
@@ -15,6 +16,24 @@ const App = () => {
     }
 
   }, [localStorage.getItem("username")])
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      let token1 = localStorage.getItem("token");
+      let decodedToken = jwt_decode(token1);
+      const d = new Date(0);
+      d.setUTCSeconds(decodedToken.exp);
+      let currentDate = new Date();
+      let result = false;
+
+      // JWT exp is in seconds
+      if (decodedToken.exp * 1000 < currentDate.getTime()) {
+        localStorage.clear()
+      } else {
+        result = true;
+      }
+    }
+  }, [])
 
   return (
     <div className="App">

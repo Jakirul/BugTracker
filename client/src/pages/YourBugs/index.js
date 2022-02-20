@@ -20,7 +20,7 @@ const YourBugs = () => {
         <h1>{data.title}</h1>
         <p>{data.description}</p>
         
-        {data.status !== "Complete" ? <p style={{color: "red"}}>{data.status}</p> : <p style={{color: "green"}}>{data.status}</p>}
+        {data.status !== "Resolved" ? <p style={{color: "red"}}>{data.status}</p> : <p style={{color: "green"}}>{data.status}</p>}
         <p>{data.user}</p>
       </div>
     )

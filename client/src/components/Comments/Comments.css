@@ -1,0 +1,53 @@
+.Comments > form > .success {
+    color: green;
+    font-weight: bold;
+}
+
+.Comments> form > .error {
+    color: red;
+    font-weight: bold;
+}
+
+.Comments > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Comments> form > textarea {
+    resize: none;
+    width: 500px;
+    height: 100px;
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+.Comments > form > input[type='submit'] {
+    margin: 20px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #45a33e;
+    font-weight: bold;
+    color: white;
+}
+
+.Comments > div > div {
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    width: 700px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.Comments> div > div > p {
+    width: 70%;
+}

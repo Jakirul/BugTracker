@@ -1,6 +1,6 @@
 .ShowPage > .information {
     border: 1px solid black;
-    width: 25%;
+    width: 50%;
     padding: 20px;
     margin: 20px auto;
     border-radius: 8px;
@@ -20,4 +20,24 @@
 
 .ShowPage > .information > p > span {
     font-weight: bold;
+}
+
+.ShowPage > .information > form > .success {
+    color: green;
+    font-weight: bold;
+}
+
+.ShowPage > .information > form > .error {
+    color: red;
+    font-weight: bold;
+}
+
+.ShowPage > .information > form > button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #45a33e;
+    font-weight: bold;
+    color: white;
 }
