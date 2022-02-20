@@ -30,7 +30,6 @@ const ShowPage = () => {
         const resolve = await fetch(`http://localhost:3001/bug/${id}`, options)
         const resolveJson = await resolve.json();
 
-        console.log(resolveJson)
         if (resolveJson.Error) {
             setError("Could not mark this as resolved, please try again later")
             setSuccess()

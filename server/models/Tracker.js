@@ -90,7 +90,6 @@ class Tracker {
                 const db = await init();
 
                 let decode = jwtDecode(req.headers.authorization)
-                console.log("DECODE = ", decode.username)
 
                 let user = await db.collection("bugs").find({_id: ObjectId(id)}).toArray()
                 if (user[0].user == decode.username) {
