@@ -65,4 +65,26 @@ async function markBugResolved(req, res) {
     }
 }
 
-module.exports = { allBugs, newBug, bugsByUser, getBugById, appendComment, markBugResolved }
+async function filterSearch(req, res) {
+    try {
+        const {value} = req.params
+        console.log(value)
+        const filterSearch = await Tracker.filterSearch(value)
+        res.status(200).json(filterSearch)
+    } catch (e) {
+        res.status(200).json({'Error': `${e}`})
+    }
+}
+
+async function deleteBugPost(req, res) {
+    try {
+        const {id} = req.params
+        const deletePost = await Tracker.deleteBugPost(req, id)
+        res.status(200).json(deletePost)
+
+    } catch (e) {
+        res.status(200).json({'Error': `${e}`})
+    }
+}
+
+module.exports = { allBugs, newBug, bugsByUser, getBugById, appendComment, markBugResolved, filterSearch, deleteBugPost }

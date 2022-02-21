@@ -91,7 +91,7 @@ class Tracker {
 
                 let decode = jwtDecode(req.headers.authorization)
 
-                let user = await db.collection("bugs").find({_id: ObjectId(id)}).toArray()
+                let user = await db.collection("bugs").find({ _id: ObjectId(id) }).toArray()
                 if (user[0].user == decode.username) {
                     await db.collection("bugs").updateOne({ _id: ObjectId(id) }, { $set: { status: "Resolved" } })
                     resolve("Successfully marked this bug as resolved!")
@@ -99,7 +99,52 @@ class Tracker {
                     reject("Cannot mark this bug as resolved - please try again later")
                 }
 
-                
+
+
+            } catch (e) {
+                reject(`${e} - Could not mark bug as Resolved`)
+            }
+        })
+    }
+
+    static filterSearch(value) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const db = await init();
+                let searchValue;
+                if (value === "All") {
+                    searchValue = await Tracker.allBugs
+                    console.log(searchValue)
+                } else if (value === "Low Priority") {
+                    searchValue = await db.collection("bugs").find({ status: { $ne: "Resolved" } }).toArray()
+                } else if (value === "Resolved") {
+                    searchValue = await db.collection("bugs").find({ status: value }).toArray()
+                }
+                resolve(searchValue)
+
+
+            } catch (e) {
+                reject(`${e} - Could not filter a search`)
+            }
+        })
+    }
+
+    static deleteBugPost(req, id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const db = await init();
+
+                let decode = jwtDecode(req.headers.authorization)
+
+                let user = await db.collection("bugs").find({ _id: ObjectId(id) }).toArray()
+                if (user[0].user == decode.username) {
+                    await db.collection("bugs").deleteOne({ _id: ObjectId(id) })
+                    resolve("Successfully deleted a post")
+                } else {
+                    reject("Cannot delete this post - please try again later")
+                }
+
+
 
             } catch (e) {
                 reject(`${e} - Could not mark bug as Resolved`)
