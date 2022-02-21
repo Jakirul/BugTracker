@@ -1,11 +1,12 @@
 .ShowPage > .information {
     border: 1px solid black;
-    width: 50%;
+    width: 600px;
     padding: 20px;
     margin: 20px auto;
     border-radius: 8px;
     border: 1px solid rgb(221, 209, 209);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
 }
 
 .ShowPage > .information > textarea {
@@ -22,17 +23,33 @@
     font-weight: bold;
 }
 
-.ShowPage > .information > form > .success {
+.ShowPage > .information > div {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.ShowPage > .information > div > form > .success {
     color: green;
     font-weight: bold;
 }
 
-.ShowPage > .information > form > .error {
+.ShowPage > .information > div > form > .error {
     color: red;
     font-weight: bold;
 }
 
-.ShowPage > .information > form > button {
+.ShowPage > .information > div > form > .delete {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #e62c2c;
+    font-weight: bold;
+    color: white;
+}
+
+.ShowPage > .information > div > form > .resolve {
     margin-top: 20px;
     padding: 10px 30px;
     border-radius: 8px;
@@ -41,3 +58,10 @@
     font-weight: bold;
     color: white;
 }
+
+/* .ShowPage > .comments {
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 50%;
+    margin: 0 auto;
+} */

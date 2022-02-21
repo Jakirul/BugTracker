@@ -1,5 +1,5 @@
 .Navbar {
-    background-color: gray;
+    background-color: rgb(112, 212, 125);
     padding: 20px 50px;
 }
 
@@ -18,8 +18,4 @@
 
 .Navbar > div > div > a:hover {
     font-weight: bold;
-}
-
-.Navbar > div > div > a:focus {
-    color: blue;
 }

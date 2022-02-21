@@ -5,7 +5,7 @@ import './NewBug.css'
 const NewBug = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [status, setStatus] = useState("Pending")
+    const [status, setStatus] = useState("Low Priority")
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
 

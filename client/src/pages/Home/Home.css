@@ -5,9 +5,22 @@
 }
 
 .Home > div {
-    width: 90%;
+    width: 600px;
     height: 200px;
     margin: 20px auto;
-    border: 1px solid black;
-    padding: 10px 20px;
+    border: 1px solid rgb(221, 209, 209);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: white;
+}
+
+.Home > form > button {
+    margin: 10px 5px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #45a33e;
+    color: white;
+    font-weight: bold;
 }
