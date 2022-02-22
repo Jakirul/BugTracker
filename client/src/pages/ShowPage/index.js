@@ -14,6 +14,9 @@ const ShowPage = () => {
         const fetchInfo = async () => {
             const data = await fetch(`http://localhost:3001/view/${id}`)
             const jsonData = await data.json();
+            if (jsonData == null || jsonData.Error) {
+                navigate("/", {state: {error: "Page does not exist!"} })
+            }
             setData(jsonData)
         }
 

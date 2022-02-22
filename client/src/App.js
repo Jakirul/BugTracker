@@ -10,10 +10,6 @@ const App = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!localStorage.getItem("username") && !localStorage.getItem("token")) {
-      localStorage.clear();
-      navigate("/")
-    }
 
   }, [localStorage.getItem("username")])
 

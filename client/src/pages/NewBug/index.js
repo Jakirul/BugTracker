@@ -8,11 +8,12 @@ const NewBug = () => {
     const [status, setStatus] = useState("Low Priority")
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
-
     const navigate = useNavigate()
+    
     useEffect(() => {
         if (!localStorage.getItem("username") && !localStorage.getItem("token")) {
-            navigate("/login")
+            console.log("here")
+            navigate("/login", {state: {error: "Please login to add a new bug post!"} })
         }
     }, [])
 

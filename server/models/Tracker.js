@@ -1,156 +1,182 @@
-const { init } = require("../db/mongoInit")
+const { init } = require("../db/mongoInit");
 const { ObjectId } = require("mongodb");
-const jwtDecode = require('jwt-decode')
+const jwtDecode = require("jwt-decode");
 
 class Tracker {
-    constructor(data) {
-        this.title = data.title,
-            this.description = data.description,
-            this.status = data.status,
-            this.user = data.user
-    }
+  constructor(data) {
+    this.title = data.title,
+    this.description = data.description,
+    this.status = data.status,
+    this.user = data.user;
+  }
 
-    static get allBugs() {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-                const allBugs = await db.collection("bugs").find({}).toArray();
-                resolve(allBugs)
+  static get allBugs() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
+        const allBugs = await db.collection("bugs").find({}).toArray();
+        resolve(allBugs);
+      } catch (e) {
+        reject(`${e} - Cannot retrieve all known bugs`);
+      }
+    });
+  }
 
-            } catch (e) {
-                reject(`${e} - Cannot retrieve all known bugs`)
-            }
-        })
-    }
+  static newBug(title, description, status, user) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (
+          !title.trim() ||
+          !description.trim() ||
+          !status.trim() ||
+          !user.trim()
+        ) {
+          reject("Cannot keep fields empty!");
+        } else {
+          const db = await init();
+          await db.collection("bugs").insertOne({
+            title: title,
+            description: description,
+            status: status,
+            user: user,
+          });
+          resolve("Successfully created a new bug report!");
+        }
+      } catch (e) {
+        reject(`${e} - Cannot create a new bug report`);
+      }
+    });
+  }
 
-    static newBug(title, description, status, user) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                if (!title.trim() || !description.trim() || !status.trim() || !user.trim()) {
-                    reject("Cannot keep fields empty!")
-                }
-                const db = await init();
-                await db.collection("bugs").insertOne({ title: title, description: description, status: status, user: user })
-                resolve("Successfully created a new bug report!")
+  static bugsByUser(user) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
+        const findByUser = await db
+          .collection("bugs")
+          .find({ user: user })
+          .toArray();
+        resolve(findByUser);
+      } catch (e) {
+        reject(`${e} - Could not find a bug by this username`);
+      }
+    });
+  }
 
+  static getBugById(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
+        const getById = await db
+          .collection("bugs")
+          .findOne({ _id: ObjectId(id) });
+        resolve(getById);
+      } catch (e) {
+        reject(`${e} - Could not get a bug with this id`);
+      }
+    });
+  }
 
-            } catch (e) {
-                reject(`${e} - Cannot create a new bug report`)
-            }
-        })
-    }
+  static appendComment(user, comment, id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
 
-    static bugsByUser(user) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-                const findByUser = await db.collection("bugs").find({ user: user }).toArray()
-                resolve(findByUser)
+        if (!user.trim() || !comment.trim()) {
+          reject("Error - please try again later");
+        }
 
-            } catch (e) {
-                reject(`${e} - Could not find a bug by this username`)
-            }
-        })
-    }
+        await db.collection("bugs").updateOne(
+          { _id: ObjectId(id) },
+          {
+            $push: {
+              comment: {
+                user: user,
+                comment: comment,
+                timestamp: Date.now(),
+              },
+            },
+          }
+        );
+        resolve("Successfully added a new comment!");
+      } catch (e) {
+        reject(`${e} - Could not append a new comment`);
+      }
+    });
+  }
 
-    static getBugById(id) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-                const getById = await db.collection("bugs").findOne({ _id: ObjectId(id) })
-                resolve(getById)
+  static markBugResolved(req, id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
 
-            } catch (e) {
-                reject(`${e} - Could not get a bug with this id`)
-            }
-        })
-    }
+        let decode = jwtDecode(req.headers.authorization);
 
-    static appendComment(user, comment, id) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
+        let user = await db
+          .collection("bugs")
+          .find({ _id: ObjectId(id) })
+          .toArray();
+        if (user[0].user == decode.username) {
+          await db
+            .collection("bugs")
+            .updateOne({ _id: ObjectId(id) }, { $set: { status: "Resolved" } });
+          resolve("Successfully marked this bug as resolved!");
+        } else {
+          reject("Cannot mark this bug as resolved - please try again later");
+        }
+      } catch (e) {
+        reject(`${e} - Could not mark bug as Resolved`);
+      }
+    });
+  }
 
-                if (!user.trim() || !comment.trim()) {
-                    reject("Error - please try again later")
-                }
+  static filterSearch(value) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
+        let searchValue;
+        if (value === "All") {
+          searchValue = await Tracker.allBugs;
+        } else if (value === "Low Priority") {
+          searchValue = await db
+            .collection("bugs")
+            .find({ status: { $ne: "Resolved" } })
+            .toArray();
+        } else if (value === "Resolved") {
+          searchValue = await db
+            .collection("bugs")
+            .find({ status: value })
+            .toArray();
+        }
+        resolve(searchValue);
+      } catch (e) {
+        reject(`${e} - Could not filter a search`);
+      }
+    });
+  }
 
-                await db.collection("bugs").updateOne({ _id: ObjectId(id) }, { $push: { "comment": { user: user, comment: comment, timestamp: Date.now() } } })
-                resolve("Successfully added a new comment!")
+  static deleteBugPost(req, id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const db = await init();
 
-            } catch (e) {
-                reject(`${e} - Could not append a new comment`)
-            }
-        })
-    }
+        let decode = jwtDecode(req.headers.authorization);
 
-    static markBugResolved(req, id) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-
-                let decode = jwtDecode(req.headers.authorization)
-
-                let user = await db.collection("bugs").find({ _id: ObjectId(id) }).toArray()
-                if (user[0].user == decode.username) {
-                    await db.collection("bugs").updateOne({ _id: ObjectId(id) }, { $set: { status: "Resolved" } })
-                    resolve("Successfully marked this bug as resolved!")
-                } else {
-                    reject("Cannot mark this bug as resolved - please try again later")
-                }
-
-
-
-            } catch (e) {
-                reject(`${e} - Could not mark bug as Resolved`)
-            }
-        })
-    }
-
-    static filterSearch(value) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-                let searchValue;
-                if (value === "All") {
-                    searchValue = await Tracker.allBugs
-                    console.log(searchValue)
-                } else if (value === "Low Priority") {
-                    searchValue = await db.collection("bugs").find({ status: { $ne: "Resolved" } }).toArray()
-                } else if (value === "Resolved") {
-                    searchValue = await db.collection("bugs").find({ status: value }).toArray()
-                }
-                resolve(searchValue)
-
-
-            } catch (e) {
-                reject(`${e} - Could not filter a search`)
-            }
-        })
-    }
-
-    static deleteBugPost(req, id) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const db = await init();
-
-                let decode = jwtDecode(req.headers.authorization)
-
-                let user = await db.collection("bugs").find({ _id: ObjectId(id) }).toArray()
-                if (user[0].user == decode.username) {
-                    await db.collection("bugs").deleteOne({ _id: ObjectId(id) })
-                    resolve("Successfully deleted a post")
-                } else {
-                    reject("Cannot delete this post - please try again later")
-                }
-
-
-
-            } catch (e) {
-                reject(`${e} - Could not mark bug as Resolved`)
-            }
-        })
-    }
+        let user = await db
+          .collection("bugs")
+          .find({ _id: ObjectId(id) })
+          .toArray();
+        if (user[0].user == decode.username) {
+          await db.collection("bugs").deleteOne({ _id: ObjectId(id) });
+          resolve("Successfully deleted a post");
+        } else {
+          reject("Cannot delete this post - please try again later");
+        }
+      } catch (e) {
+        reject(`${e} - Could not mark bug as Resolved`);
+      }
+    });
+  }
 }
 
 module.exports = Tracker;

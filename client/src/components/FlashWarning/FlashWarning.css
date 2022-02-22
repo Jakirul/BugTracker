@@ -1,0 +1,24 @@
+.FlashWarning{
+    background-color: rgb(238, 223, 223);
+    padding: 0 20px;
+    color: rgb(189, 72, 72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FlashWarning > div {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.FlashWarning > button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    height: min-content;
+
+}

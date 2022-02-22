@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import AddComments from '../AddComments';
+import { AddComments } from '..';
 import './Comments.css'
 
 const Comments = ({ id, data }) => {

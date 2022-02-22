@@ -68,7 +68,6 @@ async function markBugResolved(req, res) {
 async function filterSearch(req, res) {
     try {
         const {value} = req.params
-        console.log(value)
         const filterSearch = await Tracker.filterSearch(value)
         res.status(200).json(filterSearch)
     } catch (e) {

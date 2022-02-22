@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FlashWarning } from '../../components'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 
 const Login = () => {
@@ -7,7 +8,9 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
+    const [hideFlash, setHideFlash] = useState(false)
     const navigate = useNavigate()
+    const {state} = useLocation();
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -41,6 +44,7 @@ const Login = () => {
 
     return (
         <div className="Login">
+            {state ? !hideFlash ? <FlashWarning warning={state.error} setHideFlash={setHideFlash} /> : null : null}
             <h1>Login</h1>
             <form onSubmit={loginUser}>
                 <label htmlFor="username">Username</label>

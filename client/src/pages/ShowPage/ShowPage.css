@@ -1,62 +1,62 @@
 .ShowPage > .information {
-    border: 1px solid black;
-    width: 600px;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 8px;
-    border: 1px solid rgb(221, 209, 209);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background-color: white;
+  border: 1px solid black;
+  width: 600px;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  border: 1px solid rgb(221, 209, 209);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: white;
 }
 
 .ShowPage > .information > textarea {
-    resize: none;
-    width: 50%;
-    height: 100px;
-    border: 1px solid rgb(221, 209, 209);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    border-radius: 8px;
-    padding: 10px;
+  resize: none;
+  width: 50%;
+  height: 100px;
+  border: 1px solid rgb(221, 209, 209);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .ShowPage > .information > p > span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .ShowPage > .information > div {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .ShowPage > .information > div > form > .success {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
 .ShowPage > .information > div > form > .error {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 .ShowPage > .information > div > form > .delete {
-    margin-top: 20px;
-    padding: 10px 30px;
-    border-radius: 8px;
-    border: none;
-    background-color: #e62c2c;
-    font-weight: bold;
-    color: white;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: none;
+  background-color: #e62c2c;
+  font-weight: bold;
+  color: white;
 }
 
 .ShowPage > .information > div > form > .resolve {
-    margin-top: 20px;
-    padding: 10px 30px;
-    border-radius: 8px;
-    border: none;
-    background-color: #45a33e;
-    font-weight: bold;
-    color: white;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: none;
+  background-color: #45a33e;
+  font-weight: bold;
+  color: white;
 }
 
 /* .ShowPage > .comments {
