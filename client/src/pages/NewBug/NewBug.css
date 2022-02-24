@@ -56,3 +56,9 @@
     color: red;
     font-weight: bold;
 }
+
+@media screen and (max-width: 800px) {
+    .NewBug > form {
+        width: 85%;
+    }
+}

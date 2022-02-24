@@ -19,3 +19,14 @@
 .Navbar > div > div > a:hover {
     font-weight: bold;
 }
+
+@media screen and (max-width: 500px) {
+    .Navbar > div {
+        flex-direction: column;
+    }
+
+    .Navbar > div > div {
+        display: flex;
+        flex-direction: column;
+    }
+}

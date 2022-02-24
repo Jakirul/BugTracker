@@ -59,9 +59,18 @@
   color: white;
 }
 
-/* .ShowPage > .comments {
-    border: 1px solid rgb(221, 209, 209);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    width: 50%;
-    margin: 0 auto;
-} */
+@media screen and (max-width: 800px) {
+  .ShowPage > .information {
+    width: 85%;
+    height: auto;
+
+  }
+
+  .ShowPage > .information > textarea {
+    width: 85%;
+  }
+
+  .ShowPage > .comments > .Comments > form > textarea {
+    width: 85%;
+  }
+}

@@ -18,3 +18,10 @@
 .YourBugs > div > h1 {
     cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+    .YourBugs > div {
+        width: 85%;
+        height: auto;
+    }
+}
