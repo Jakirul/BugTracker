@@ -52,3 +52,9 @@
 .Comments> div > div > p {
     width: 70%;
 }
+
+@media screen and (max-width: 800px) {
+    .Comments > div > div {
+        width: 85%;
+    }
+}
