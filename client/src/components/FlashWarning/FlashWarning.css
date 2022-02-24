@@ -22,3 +22,14 @@
     height: min-content;
 
 }
+
+@media screen and (max-width: 800px) {
+    .FlashWarning > div > h1 {
+        font-size: 20px;
+    }
+
+    .FlashWarning > button {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
