@@ -49,7 +49,7 @@ const Home = () => {
       
       <form onSubmit={filterSearch}>
         <button onClick={() => currentValue("All")}>Show All</button>
-        <button onClick={() => currentValue("Low Priority")}>Show Low Priority</button>
+        <button onClick={() => currentValue("Unresolved")}>Show Unresolved</button>
         <button onClick={() => currentValue("Resolved")}>Show Resolved</button>
       </form>
       {isLoading ? <h1>Loading....</h1> : !data.length ? <h1>Nothing found as of yet...</h1> : dataMap}

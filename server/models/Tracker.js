@@ -137,7 +137,7 @@ class Tracker {
         let searchValue;
         if (value === "All") {
           searchValue = await Tracker.allBugs;
-        } else if (value === "Low Priority") {
+        } else if (value === "Unresolved") {
           searchValue = await db
             .collection("bugs")
             .find({ status: { $ne: "Resolved" } })
