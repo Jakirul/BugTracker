@@ -12,7 +12,6 @@ const NewBug = () => {
     
     useEffect(() => {
         if (!localStorage.getItem("username") && !localStorage.getItem("token")) {
-            console.log("here")
             navigate("/login", {state: {error: "Please login to add a new bug post!"} })
         }
     }, [])
@@ -73,7 +72,7 @@ const NewBug = () => {
                             : 
                                 <p className="error">{error}</p>
                     :
-                    null
+                        null
                 }
                 
 

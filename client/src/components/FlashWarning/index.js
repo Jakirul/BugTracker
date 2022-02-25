@@ -4,7 +4,7 @@ import './FlashWarning.css'
 
 const FlashWarning = ({warning, setHideFlash}) => {
   const navigate = useNavigate()
-  console.log(window.location.pathname)
+  
   const hideBtn = (e) => {
     setHideFlash(true)
 
